@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak | SMAN 1 Biau</title>
+    <meta name="description" content="Hubungi SMA Negeri 1 Biau — alamat, email, media sosial, dan formulir pesan.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="pic/logo smansa.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ============ NAVBAR — reuse, "Kontak" jadi is-active ============ -->
+    <header class="site-header">
+        <nav class="navbar" aria-label="Navigasi utama">
+            <a href="index.html" class="navbar__brand">
+                <img src="pic/logo smansa.png" alt="Logo SMA Negeri 1 Biau" class="navbar__logo">
+                <span class="navbar__title">SMA Negeri 1 Biau</span>
+            </a>
+
+            <button class="navbar__toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="navMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="navbar__menu" id="navMenu">
+                <li><a href="index.html">Beranda</a></li>
+                <li class="has-dropdown">
+                    <a href="profil.html">Profil</a>
+                    <ul class="dropdown">
+                        <li><a href="profil.html#sejarah">Sejarah Singkat</a></li>
+                        <li><a href="profil.html#visi-misi">Visi &amp; Misi</a></li>
+                        <li><a href="profil.html#sarana">Sarana &amp; Prasarana</a></li>
+                        <li><a href="profil.html#struktur">Struktur Organisasi</a></li>
+                    </ul>
+                </li>
+                <li><a href="berita.html">Berita</a></li>
+                <li><a href="galeri.html">Galeri</a></li>
+                <li><a href="kontak.html" class="is-active">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ============ PAGE HEADER — reuse pola dari berita.html/galeri.html ============ -->
+        <section class="page-header">
+            <p class="page-header__eyebrow">Kami Siap Membantu</p>
+            <h1 class="page-header__title">Hubungi Kami</h1>
+            <p class="page-header__subtitle">
+                Ada pertanyaan, saran, atau butuh informasi lebih lanjut? Silakan hubungi kami lewat kontak di bawah.
+            </p>
+        </section>
+
+        <section class="kontak-page" id="kontak-page">
+            <div class="kontak-page__grid">
+
+                <!-- ============ INFO KONTAK ============ -->
+                <div class="kontak-info">
+                    <h2>Informasi Kontak</h2>
+                    <p class="kontak-info__desc">
+                        Kunjungi kami langsung, kirim email, atau sapa lewat media sosial sekolah.
+                    </p>
+
+                    <ul class="kontak-info__list">
+                        <li class="kontak-info__item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div>
+                                <strong>Alamat</strong>
+                                <p>Jl. MA. Turungku No. 74, Kelurahan Kali,<br>
+                                    Kecamatan Biau, Kabupaten Buol, Sulawesi Tengah 94563</p>
+                            </div>
+                        </li>
+
+                        <li class="kontak-info__item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <p><a href="mailto:sman1lipunoto@gmail.com">sman1lipunoto@gmail.com</a></p>
+                            </div>
+                        </li>
+
+                        <li class="kontak-info__item">
+                            <i class="fa-solid fa-id-card"></i>
+                            <div>
+                                <strong>NPSN</strong>
+                                <p>40202043</p>
+                            </div>
+                        </li>
+
+                        <li class="kontak-info__item">
+                            <i class="fa-solid fa-share-nodes"></i>
+                            <div>
+                                <strong>Media Sosial</strong>
+                                <div class="kontak-info__social">
+                                    <a href="https://www.facebook.com/smansa.biau.73" target="_blank"
+                                        rel="noopener noreferrer">Facebook</a>
+                                    <a href="https://www.instagram.com/sman1biau/" target="_blank"
+                                        rel="noopener noreferrer">Instagram</a>
+                                    <a href="https://www.youtube.com/@smanegeri1biau813" target="_blank"
+                                        rel="noopener noreferrer">YouTube</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="map-embed">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4030.551924553621!2d121.42409277501304!3d1.1605713988283266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3270b1dbf7a3d86d%3A0xfc73153c6bb37ebc!2sSMA%20Negeri%201%20Biau!5e1!3m2!1sid!2sid!4v1785764416551!5m2!1sid!2sid"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
+                </div>
+
+                <!-- ============ FORM PESAN ============ -->
+                <div class="kontak-form-wrap">
+                    <h2>Hubungi via WhatsApp</h2>
+                    <p class="kontak-info__desc">
+                        Isi formulir di bawah, kirim pesan dan kamu akan diarahkan ke WhatsApp kami.
+                    </p>
+
+                    <form class="kontak-form" id="kontakForm" method="POST">
+                        <div class="form-group">
+                            <label for="kontakNama">Nama</label>
+                            <input type="text" id="kontakNama" name="nama" placeholder="Nama lengkap" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="kontakSubjek">Subjek</label>
+                            <input type="text" id="kontakSubjek" name="subjek" placeholder="Perihal pesan" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="kontakPesan">Pesan</label>
+                            <textarea id="kontakPesan" name="pesan" rows="5" placeholder="Tulis pesan kamu di sini..."
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="kontak-wa-btn kontak-form__submit">
+                            <i class="fa-brands fa-whatsapp"></i> Chat via WhatsApp
+                        </button>
+
+                        <p class="kontak-form__msg" id="kontakFormMsg" hidden></p>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer__grid">
+
+            <div class="footer__col">
+                <div class="footer__brand">
+                    <img src="pic/logo smansa.png" alt="Logo SMA Negeri 1 Biau" class="footer__logo">
+                    <h3>SMAN 1 Biau</h3>
+                </div>
+                <p>NPSN: 40202043</p>
+                <p>Jl. MA. Turungku No. 74, Kelurahan Kali,<br>
+                    Kecamatan Biau, Kabupaten Buol, Sulawesi Tengah 94563</p>
+            </div>
+
+            <div class="footer__row">
+                <div class="footer__col">
+                    <h3>Kontak</h3>
+                    <p><a href="mailto:sman1lipunoto@gmail.com">sman1lipunoto@gmail.com</a></p>
+                </div>
+
+                <div class="footer__col">
+                    <h3>Ikuti Kami</h3>
+                    <div class="footer__social">
+                        <a href="https://www.facebook.com/smansa.biau.73" target="_blank"
+                            rel="noopener noreferrer">Facebook</a>
+                        <a href="https://www.instagram.com/sman1biau/" target="_blank"
+                            rel="noopener noreferrer">Instagram</a>
+                        <a href="https://www.youtube.com/@smanegeri1biau813" target="_blank"
+                            rel="noopener noreferrer">YouTube</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer__bottom">
+            <p>&copy; <span id="tahun"></span> SMAN 1 Biau. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox__close" id="lightboxClose" aria-label="Tutup">&times;</button>
+        <img src="" alt="" class="lightbox__img" id="lightboxImg">
+    </div>
+
+    <script src="data.js"></script>
+    <script src="duh.js"></script>
+
+</body>
+
+</html>
