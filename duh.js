@@ -1,3 +1,4 @@
+const NOMOR_WA_SEKOLAH = '6282194691750';
 // ============ TOGGLE MENU MOBILE ============
 const navToggle = document.querySelector('.navbar__toggle');
 const navMenu = document.querySelector('.navbar__menu');
@@ -32,6 +33,7 @@ navLinks.forEach(link => {
 // ============ HELPER MARKUP (dipakai bareng oleh beranda & halaman berita/galeri,
 // biar nggak ada template HTML yang di-copy-paste di banyak tempat) ============
 function beritaCardHTML(berita) {
+    const id = beritaData.indexOf(berita);
     return `
         <article class="berita-card">
             <img src="${berita.gambar}" alt="${berita.judul}" class="berita-card__img">
@@ -39,7 +41,7 @@ function beritaCardHTML(berita) {
                 <time class="berita-card__date" datetime="${berita.tanggal}">${berita.tanggalTampil}</time>
                 <h3 class="berita-card__title">${berita.judul}</h3>
                 <p class="berita-card__excerpt">${berita.ringkasan}</p>
-                <a href="${berita.link}" class="link-more">Baca selengkapnya &rarr;</a>
+                <a href="detail-berita.html?id=${id}" class="link-more">Baca selengkapnya &rarr;</a>
             </div>
         </article>
     `;
@@ -79,10 +81,63 @@ function renderGaleri() {
     container.innerHTML = items.map(galeriItemHTML).join('');
 }
 
+// ============ RENDER PENGUMUMAN (BANNER MUSIMAN, MIS. PPDB) ============
+function renderPengumuman() {
+    const container = document.getElementById('pengumuman-banner');
+    if (!container) return; // skip kalau section-nya nggak ada di halaman ini (cuma ada di index.html)
+
+    if (!pengumumanData.aktif) {
+        container.remove(); // hapus total dari DOM biar nggak nyisain ruang kosong
+        return;
+    }
+
+    const waLink = `https://wa.me/${NOMOR_WA_SEKOLAH}?text=${encodeURIComponent(pengumumanData.teksWA)}`;
+        // pengumuman-banner__tag = Info Penting / Jangan Terlewat
+    container.innerHTML = `
+    <div class="pengumuman-banner__label">
+        <span class="pengumuman-banner__label-dot"></span>
+        <i class="fa-solid fa-bullhorn"></i> Pengumuman
+    </div>
+    <div class="pengumuman-banner__inner"> 
+        <img src="${pengumumanData.poster}" alt="${pengumumanData.judul}" class="pengumuman-banner__poster">
+        <div class="pengumuman-banner__body">
+            <span class="pengumuman-banner__tag">Info Penting</span> 
+            <h3 class="pengumuman-banner__title">${pengumumanData.judul}</h3>
+            <p class="pengumuman-banner__desc">${pengumumanData.deskripsi}</p>
+            <div class="pengumuman-banner__actions">
+    ${pengumumanData.tampilkanTombolDaftar ? `
+        <a href="${pengumumanData.linkPendaftaran}" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+            ${pengumumanData.teksTombolDaftar}
+        </a>
+    ` : ''}
+    <a href="${waLink}" target="_blank" rel="noopener noreferrer" class="kontak-wa-btn">
+        <i class="fa-brands fa-whatsapp"></i> Tanya via WhatsApp
+    </a>
+</div>
+        </div>
+    </div>
+`;
+
+    // Klik poster buka lightbox biar bisa di-zoom (reuse lightbox yang udah ada)
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const posterImg = container.querySelector('.pengumuman-banner__poster');
+
+    if (lightbox && lightboxImg && posterImg) {
+        posterImg.style.cursor = 'pointer';
+        posterImg.addEventListener('click', () => {
+            lightboxImg.src = posterImg.src;
+            lightboxImg.alt = posterImg.alt;
+            lightbox.classList.add('is-open');
+        });
+    }
+}
+
 
 // ============ JALANKAN SAAT HALAMAN SELESAI DIMUAT ============
 renderBerita();
 renderGaleri();
+renderPengumuman();
 
 // ============ LIGHTBOX — kontrol universal (tombol close, klik luar, Escape) ============
 function initLightboxControls() {
@@ -470,8 +525,58 @@ function initGaleriPage() {
     render();
 }
 
-initGaleriPage();
+// ============ HALAMAN DETAIL BERITA + BERITA LAINNYA (RANDOM) ============
+function shuffleArray(arr) {
+    const result = [...arr];
+    for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+    }
+    return result;
+}
 
+function initDetailBerita() {
+    const wrap = document.getElementById('detail-berita');
+    if (!wrap) return; // skip kalau bukan di detail-berita.html
+
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'), 10);
+    const berita = beritaData[id];
+
+    if (!berita) {
+        wrap.innerHTML = `
+            <div class="detail-berita__inner">
+                <p>Berita tidak ditemukan.</p>
+                <a href="berita.html" class="detail-berita__back">&larr; Kembali ke semua berita</a>
+            </div>
+        `;
+        return;
+    }
+
+    document.title = `${berita.judul} | SMAN 1 Biau`;
+
+    document.getElementById('detailKategori').textContent = berita.kategori;
+    document.getElementById('detailKategori').setAttribute('data-category', berita.kategori);
+    document.getElementById('detailJudul').textContent = berita.judul;
+    document.getElementById('detailTanggal').textContent = berita.tanggalTampil;
+    document.getElementById('detailTanggal').setAttribute('datetime', berita.tanggal);
+    document.getElementById('detailGambar').src = berita.gambar;
+    document.getElementById('detailGambar').alt = berita.judul;
+
+    // Fallback: kalau isiLengkap belum diisi, pakai ringkasan aja
+    const isi = berita.isiLengkap || berita.ringkasan;
+    document.getElementById('detailIsi').innerHTML = `<p>${isi}</p>`;
+
+    // ============ BERITA LAINNYA (RANDOM, EXCLUDE BERITA INI SENDIRI) ============
+    const grid = document.getElementById('beritaLainnyaGrid');
+    if (grid) {
+        const lainnya = shuffleArray(beritaData.filter(b => b !== berita)).slice(0, 3);
+        grid.innerHTML = lainnya.map(beritaCardHTML).join('');
+    }
+}
+
+initDetailBerita();
+initGaleriPage();
 initBeritaPage();
 
 // ============ HALAMAN KONTAK: VALIDASI + PESAN SUKSES FORM ============
@@ -486,10 +591,6 @@ function initKontakForm() {
     if (!form) return;
 
     const msg = document.getElementById('kontakFormMsg');
-
-    // Ganti dengan nomor WA sekolah, format: kode negara + nomor tanpa 0 di depan, tanpa spasi/strip/plus
-    // Contoh: 0812-3456-7890 -> jadi 6281234567890
-    const NOMOR_WA_SEKOLAH = '6282194691750';
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
