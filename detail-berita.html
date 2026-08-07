@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Berita | SMAN 1 Biau</title>
+    <meta name="description" content="Detail berita SMA Negeri 1 Biau.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="pic/logo smansa.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Navigasi utama">
+            <a href="index.html" class="navbar__brand">
+                <img src="pic/logo smansa.png" alt="Logo SMA Negeri 1 Biau" class="navbar__logo">
+                <span class="navbar__title">SMA Negeri 1 Biau</span>
+            </a>
+
+            <button class="navbar__toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="navMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="navbar__menu" id="navMenu">
+                <li><a href="index.html">Beranda</a></li>
+                <li class="has-dropdown">
+                    <a href="profil.html">Profil</a>
+                    <ul class="dropdown">
+                        <li><a href="profil.html#sejarah">Sejarah Singkat</a></li>
+                        <li><a href="profil.html#visi-misi">Visi &amp; Misi</a></li>
+                        <li><a href="profil.html#sarana">Sarana &amp; Prasarana</a></li>
+                        <li><a href="profil.html#struktur">Struktur Organisasi</a></li>
+                    </ul>
+                </li>
+                <li><a href="berita.html" class="is-active">Berita</a></li>
+                <li><a href="galeri.html">Galeri</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="detail-berita" id="detail-berita">
+            <div class="detail-berita__inner">
+
+                <a href="berita.html" class="detail-berita__back">&larr; Kembali ke semua berita</a>
+
+                <span class="berita-card__tag" id="detailKategori" style="margin-left:0;"></span>
+
+                <h1 class="detail-berita__title" id="detailJudul"></h1>
+                <time class="detail-berita__date" id="detailTanggal"></time>
+
+                <img src="" alt="" class="detail-berita__img" id="detailGambar">
+
+                <div class="detail-berita__content" id="detailIsi"></div>
+
+            </div>
+        </section>
+
+        <section class="berita-lainnya" id="berita-lainnya">
+            <div class="section-heading">
+                <h2>Berita Lainnya</h2>
+            </div>
+            <div class="berita-page__grid" id="beritaLainnyaGrid"></div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer__grid">
+
+            <div class="footer__col">
+                <div class="footer__brand">
+                    <img src="pic/logo smansa.png" alt="Logo SMA Negeri 1 Biau" class="footer__logo">
+                    <h3>SMAN 1 Biau</h3>
+                </div>
+                <p>NPSN: 40202043</p>
+                <p>Jl. MA. Turungku No. 74, Kelurahan Kali,<br>
+                    Kecamatan Biau, Kabupaten Buol, Sulawesi Tengah 94563</p>
+            </div>
+
+            <div class="footer__row">
+                <div class="footer__col">
+                    <h3>Kontak</h3>
+                    <p><a href="mailto:sman1lipunoto@gmail.com">sman1lipunoto@gmail.com</a></p>
+                </div>
+
+                <div class="footer__col">
+                    <h3>Ikuti Kami</h3>
+                    <div class="footer__social">
+                        <a href="https://www.facebook.com/smansa.biau.73" target="_blank"
+                            rel="noopener noreferrer">Facebook</a>
+                        <a href="https://www.instagram.com/sman1biau/" target="_blank"
+                            rel="noopener noreferrer">Instagram</a>
+                        <a href="https://www.youtube.com/@smanegeri1biau813" target="_blank"
+                            rel="noopener noreferrer">YouTube</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer__bottom">
+            <p>&copy; <span id="tahun"></span> SMAN 1 Biau. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox__close" id="lightboxClose" aria-label="Tutup">&times;</button>
+        <img src="" alt="" class="lightbox__img" id="lightboxImg">
+    </div>
+
+    <script src="data.js"></script>
+    <script src="duh.js"></script>
+
+</body>
+
+</html>
